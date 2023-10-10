@@ -1,7 +1,29 @@
-package WORKSHOP_1.Nested;
+package WORKSHOP_2;
+
 import java.util.Random;
 
 public class Ugg {
+    public static void main(String[] args){
+        new Thread("T1") {
+            public void run(){
+                for(int i=0;i<20;i++){
+                    UggRock u = drawRock();
+                    System.out.println(Thread.currentThread().getName()+": "+"Random Rock " + (i+1)+": " + u.toString()+", Value: "+u.rockValue());
+                }
+            }
+        }.start();
+        new Thread("T2") {
+            public void run(){
+                for(int i=0;i<20;i++){
+                    UggRock u = drawRock();
+                    System.out.println(Thread.currentThread().getName()+": "+"Random Rock " + (i+1)+": " + u.toString()+", Value: "+u.rockValue());
+                    
+                }
+            }
+        }.start();
+       
+
+    }
     enum UggRockSize{
         BIGUN(5),
         QUITE_BIGUN(3),
@@ -86,3 +108,4 @@ public class Ugg {
 
     }
 }
+
